@@ -52,7 +52,7 @@ public class SignUpOverviewController {
 	 * @throws NoSuchAlgorithmException 
 	 */
 	@FXML
-	private void handleNewUser() throws NoSuchAlgorithmException {
+	private void handleNewUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
 		String username = usernameField.getText();
 		String email = emailField.getText();
 		String password = passwordField.getText();
@@ -66,21 +66,15 @@ public class SignUpOverviewController {
 			System.out.println("si");
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
 			createUser.createUser(newUser);
-		}
-	}
-
-	//Controller to change the screen when needed
-	/*
-	@FXML
-	private void handleChangeScreen(ActionEvent event) throws IOException{
-			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
+			//Controller used to change screen
+			Parent root = FXMLLoader.load(getClass().getResource("LogInOverview.fxml"));
 			Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);
 	        window.show();
+		}
 	}
-	 */
-
+	
 	private boolean isInputCorrect(String password, String confirmP) {
 		boolean isCorrect;
 		if(password.equals(confirmP)) {

@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class UserDAO {
 	private Connection connection = null;
 	private PreparedStatement ps = null; 
@@ -68,6 +71,11 @@ public class UserDAO {
 			psCreateUser.setString(5, user.getSurname());
 			psCreateUser.executeUpdate();
 		} catch (SQLException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("ERROR!");
+            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
+            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+            alert.showAndWait();
 		} finally {
 			try {
 				if(rs != null) rs.close();
