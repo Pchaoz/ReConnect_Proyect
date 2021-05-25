@@ -51,6 +51,7 @@ public class UserDAO {
 				if(connection != null) connection.close();
 			} catch (SQLException e) {
 				System.out.println("SQLException ERROR");
+				
 			} 
 			catch (Exception e) {
 				System.out.println("ERROR");

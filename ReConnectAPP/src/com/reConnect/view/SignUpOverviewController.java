@@ -67,7 +67,7 @@ public class SignUpOverviewController {
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
 			createUser.createUser(newUser);
 			//Controller used to change screen
-			Parent root = FXMLLoader.load(getClass().getResource("LogInOverview.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
 			Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);
