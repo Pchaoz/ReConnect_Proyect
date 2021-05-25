@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class UserDAO {
 	private Connection connection = null;
@@ -51,6 +52,7 @@ public class UserDAO {
 				if(connection != null) connection.close();
 			} catch (SQLException e) {
 				System.out.println("SQLException ERROR");
+				
 			} 
 			catch (Exception e) {
 				System.out.println("ERROR");
@@ -72,6 +74,11 @@ public class UserDAO {
 			psCreateUser.setString(6, user.getImgUrl());
 			psCreateUser.executeUpdate();
 		} catch (SQLException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("ERROR!");
+            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
+            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+            alert.showAndWait();
 		} finally {
 			try {
 				if(rs != null) rs.close();
