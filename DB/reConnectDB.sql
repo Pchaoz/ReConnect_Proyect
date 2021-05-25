@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 24-05-2021 a las 09:26:43
+-- Tiempo de generación: 25-05-2021 a las 11:11:24
 -- Versión del servidor: 10.3.29-MariaDB-0ubuntu0.20.04.1
 -- Versión de PHP: 7.4.3
 
@@ -46,16 +46,10 @@ CREATE TABLE `MESSAGE` (
 CREATE TABLE `POST` (
   `PID` int(11) NOT NULL,
   `USERID` int(11) NOT NULL,
+  `TITLE` varchar(58) NOT NULL,
   `MESSAGE` varchar(370) NOT NULL,
   `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `POST`
---
-
-INSERT INTO `POST` (`PID`, `USERID`, `MESSAGE`, `DATE`) VALUES
-(1, 1, 'Test message', '2021-05-19');
 
 -- --------------------------------------------------------
 
@@ -72,6 +66,13 @@ CREATE TABLE `USER` (
   `SURNAME` varchar(32) NOT NULL,
   `IMGURL` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `USER`
+--
+
+INSERT INTO `USER` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`, `NAME`, `SURNAME`, `IMGURL`) VALUES
+(1, 'test', 'test@test.com', '9390298f3fb0c5b160498935d79cb139aef28e1c47358b4bbba61862b9c26e59', 'a', 'a', 'https://www.antiagingya.com/es/wp-content/uploads/2015/01/img-default-autores.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -114,7 +115,7 @@ ALTER TABLE `POST`
 -- AUTO_INCREMENT de la tabla `USER`
 --
 ALTER TABLE `USER`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
