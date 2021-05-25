@@ -1,27 +1,19 @@
 package com.reConnect.view;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import com.reConnect.MainApp;
 import com.reConnect.model.UserDAO;
 import com.reConnect.model.UserVO;
 import com.reConnect.util.HashPassword;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 public class SignUpOverviewController {
 
@@ -30,9 +22,9 @@ public class SignUpOverviewController {
 	@FXML
 	private TextField emailField;
 	@FXML
-	private TextField passwordField;
+	private PasswordField passwordField;
 	@FXML
-	private TextField confirmPasswordField;
+	private PasswordField confirmPasswordField;
 	@FXML
 	private TextField nameField;
 	@FXML
