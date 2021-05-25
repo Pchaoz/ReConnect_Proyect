@@ -26,7 +26,7 @@ public class MainApp extends Application {
 	public void showAppOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RegisterOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/StartMenuOverview.fxml"));
             AnchorPane appOverview = (AnchorPane) loader.load();
             Scene scene = new Scene(appOverview);
             primaryStage.setScene(scene);

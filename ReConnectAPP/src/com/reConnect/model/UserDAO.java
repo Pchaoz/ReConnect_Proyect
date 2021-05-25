@@ -25,7 +25,7 @@ public class UserDAO {
 		try {
 			userVO = new ArrayList<UserVO>();
 			connection = getConnection();
-			ps = connection.prepareStatement("SELECT * FROM user");
+			ps = connection.prepareStatement("SELECT * FROM USER");
 			rs = ps.executeQuery();
 			System.out.println("Connected sucessfully");
 			while(rs.next()) {
@@ -59,13 +59,14 @@ public class UserDAO {
 	public void createUser(UserVO user) {
 		try {
 			connection = getConnection();
-			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO user(USERNAME, EMAIL, PASSWORD, NAME, SURNAME)"
-					+ "VALUES(?, ?, ?, ?, ?)");
+			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)"
+					+ "VALUES(?, ?, ?, ?, ?, ?)");
 			psCreateUser.setString(1, user.getUsername());
 			psCreateUser.setString(2, user.getEmail());
 			psCreateUser.setString(3, user.getPassword());
 			psCreateUser.setString(4, user.getName());
 			psCreateUser.setString(5, user.getSurname());
+			psCreateUser.setString(6, user.getImgUrl());
 			psCreateUser.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
@@ -80,5 +81,33 @@ public class UserDAO {
 				System.out.println("ERROR");
 			} 
 		}
+	}
+	
+	public void validateUser(UserVO user) {
+		
+		try {
+			
+			connection = getConnection();
+			
+			PreparedStatement psValidateUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?");
+			
+			psValidateUser.setString(1, user.getUsername());
+			psValidateUser.setString(2, user.getPassword());
+			
+			ResultSet rs = psValidateUser.executeQuery();
+			
+			if (rs.next()) {
+				
+				System.out.println("Si");
+			}else {
+				 
+				System.out.println("No");
+			}
+			
+		} catch (SQLException e) {
+			
+			
+		}
+		
 	}
 }
