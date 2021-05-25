@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+
 public class UserDAO {
 	private Connection connection = null;
 	private PreparedStatement ps = null; 
@@ -83,7 +86,9 @@ public class UserDAO {
 		}
 	}
 	
-	public void validateUser(UserVO user) {
+	public boolean validateUser(UserVO user) {
+		
+		boolean check = false;
 		
 		try {
 			
@@ -98,16 +103,24 @@ public class UserDAO {
 			
 			if (rs.next()) {
 				
-				System.out.println("Si");
+				check = true;
 			}else {
-				 
-				System.out.println("No");
+			
+				check = false;
+				
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+			    alert.setHeaderText(null);
+			    alert.setTitle("Error");
+			    alert.setContentText("Usuari o contrasenya incorrectes");
+			    alert.showAndWait();
+
 			}
-			
-		} catch (SQLException e) {
-			
+	
+		} catch (SQLException e) {	
 			
 		}
+		
+		return check;
 		
 	}
 }
