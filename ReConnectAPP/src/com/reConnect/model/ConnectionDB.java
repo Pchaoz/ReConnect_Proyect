@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDB {
-	private String connectionURL =  "jdbc:mysql://localhost:3306/reconnect";
+	private String connectionURL =  "jdbc:mysql://localhost:3306/reConnectDB";
 	private	String user = "root";
 	private String password = "root";
 
