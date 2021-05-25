@@ -59,13 +59,14 @@ public class UserDAO {
 	public void createUser(UserVO user) {
 		try {
 			connection = getConnection();
-			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME)"
-					+ "VALUES(?, ?, ?, ?, ?)");
+			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)"
+					+ "VALUES(?, ?, ?, ?, ?, ?)");
 			psCreateUser.setString(1, user.getUsername());
 			psCreateUser.setString(2, user.getEmail());
 			psCreateUser.setString(3, user.getPassword());
 			psCreateUser.setString(4, user.getName());
 			psCreateUser.setString(5, user.getSurname());
+			psCreateUser.setString(6, user.getImgUrl());
 			psCreateUser.executeUpdate();
 		} catch (SQLException e) {
 		} finally {

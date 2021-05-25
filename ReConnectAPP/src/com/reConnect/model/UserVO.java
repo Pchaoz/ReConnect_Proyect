@@ -7,6 +7,7 @@ public class UserVO {
 	private String password;
 	private String name;
 	private String surname;
+	private String imgUrl;
 	
 	public UserVO() {
 		
@@ -26,6 +27,7 @@ public class UserVO {
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
+		this.imgUrl = "https://www.antiagingya.com/es/wp-content/uploads/2015/01/img-default-autores.jpg";
 	}
 	
 	public int getUid() {
@@ -73,5 +75,11 @@ public class UserVO {
 	
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	public String getImgUrl() {
+		return this.imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }
