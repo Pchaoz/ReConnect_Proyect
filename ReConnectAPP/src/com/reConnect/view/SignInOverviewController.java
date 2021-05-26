@@ -1,14 +1,23 @@
 package com.reConnect.view;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import com.reConnect.model.UserDAO;
 import com.reConnect.model.UserVO;
 import com.reConnect.util.HashPassword;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SignInOverviewController {
 
@@ -16,7 +25,7 @@ public class SignInOverviewController {
 	private TextField usernameField;
 	
 	@FXML
-	private TextField passwordField;
+	private PasswordField passwordField;
 	
 	@FXML
 	private Button signInButton;
@@ -27,12 +36,12 @@ public class SignInOverviewController {
 	public void initialize() {
 
 	}
-	
+
 	@FXML
-	private void handleLogin() throws NoSuchAlgorithmException {
+	public void handleLogin(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
-		/* VARIABLES */
-		
+	/* VARIABLES */
+
 		HashPassword hash = new HashPassword();
 		
 		String username = usernameField.getText();
@@ -42,16 +51,20 @@ public class SignInOverviewController {
 		UserVO loginUser = new UserVO(username, hashedPassword);
 		UserDAO validateUser = new UserDAO();
 		
-		/* VALIDATES THE USER */
 		
-		validateUser.validateUser(loginUser);
+		/* VALIDATES THE USER  */
 		
 		
+		if (validateUser.validateUser(loginUser)) {
+		
+			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
+	        Scene newScene = new Scene(root);
+	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	        window.setScene(newScene);
+	        window.show();
+		}
 		
 	}
-	
-	
-	
 }
 
 
