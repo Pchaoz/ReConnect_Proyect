@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -60,12 +58,13 @@ public class UserDAO {
 		}
 		return userVO;
 	}
-	
+	/*
+	 * VALIDATES THE USER IN THE DATABASE FOR LOGIN
+	 */
 	public void createUser(UserVO user) {
 		try {
 			connection = getConnection();
-			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)"
-					+ "VALUES(?, ?, ?, ?, ?, ?)");
+			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)" + " VALUES(?, ?, ?, ?, ?, ?)");
 			psCreateUser.setString(1, user.getUsername());
 			psCreateUser.setString(2, user.getEmail());
 			psCreateUser.setString(3, user.getPassword());
@@ -114,13 +113,6 @@ public class UserDAO {
 			}else {
 			
 				check = false;
-				
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-			    alert.setHeaderText(null);
-			    alert.setTitle("Error");
-			    alert.setContentText("Usuari o contrasenya incorrectes");
-			    alert.showAndWait();
-
 			}
 	
 		} catch (SQLException e) {	
@@ -128,6 +120,71 @@ public class UserDAO {
 		}
 		
 		return check;
+		
+	}
+	
+	/*
+	 * UPDATES THE USER ON THE DATABASE
+	 */
+	public boolean userUpdater(UserVO user) {
+	
+		try {
+			
+			connection = getConnection();
+			
+			PreparedStatement psUpdateUser = connection.prepareStatement("UPDATE USER SET USERNAME = ?, EMAIL = ?, PASSWORD = ?, NAME = ?, SURNAME = ?, IMGURL = ? WHERE UID = ?");
+			
+			psUpdateUser.setString(1, user.getUsername());
+			psUpdateUser.setString(2, user.getEmail());
+			psUpdateUser.setString(3, user.getPassword());
+			psUpdateUser.setString(4, user.getName());
+			psUpdateUser.setString(5, user.getSurname());
+			psUpdateUser.setString(6, user.getImgUrl());
+			psUpdateUser.setInt(7, user.getUid());
+			
+			psUpdateUser.executeQuery();
+			return true;
+		
+		}catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+			return false;
+
+		}
+		
+	}
+	/*
+	 * LOADS ALL THE USER INFORMATION INTO THE UserVO
+	 */
+	public void loadUser(UserVO user) {
+		
+		try {
+			
+			connection = getConnection();
+
+			PreparedStatement psLoadUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME LIKE ?");
+			
+			psLoadUser.setString(1, user.getUsername());
+			rs = psLoadUser.executeQuery();
+			
+			while(rs.next()) {
+				
+				user.setUid(Integer.parseInt(rs.getString("UID")));
+				user.setUsername(rs.getString("USERNAME"));
+				user.setEmail(rs.getString("EMAIL"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setName(rs.getString("NAME"));
+				user.setSurname(rs.getString("SURNAME"));
+				user.setImgUrl(rs.getString("IMGURL"));
+				
+			}
+			
+		}catch (SQLException e) {
+			
+			
+		}
+		
+		
 		
 	}
 }

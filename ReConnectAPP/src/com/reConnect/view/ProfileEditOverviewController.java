@@ -9,71 +9,68 @@ import com.reConnect.util.HashPassword;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class SignInOverviewController {
+public class ProfileEditOverviewController {
 
 	@FXML
 	private TextField usernameField;
 	
 	@FXML
+	private TextField emailField;
+	
+	@FXML	
 	private PasswordField passwordField;
 	
 	@FXML
-	private Button signInButton;
-
-	/** METHODS **/
+	private TextField nameField;	
+	 
+	@FXML
+	private TextField surrnameField;	
 	
 	@FXML
-	public void initialize() {
-
-	}
-
+	private TextField imgurlField;
+	
 	@FXML
-	public void handleLogin(ActionEvent event) throws IOException, NoSuchAlgorithmException {
+	private Button updateButton;
+	
+	public void handleUpdate(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
 		/* VARIABLES THAT GET THE DATA */
-		
 		
 		HashPassword hash = new HashPassword();
 		
 		String username = usernameField.getText();
+		String email = emailField.getText();
 		String password = passwordField.getText();
+		String name = nameField.getText();
+		String surname = surrnameField.getText();
+		String imgurl = imgurlField.getText();
 		String hashedPassword = hash.hashPassword(password);
 		
-		UserVO loginUser = new UserVO(username, hashedPassword);
-		UserDAO validateUser = new UserDAO();
+		UserDAO updater = new UserDAO();
+		UserVO updateUser = new UserVO(username, email, hashedPassword, name, surname, imgurl);
 		
+		/* UPDATES THE USER */
 		
-		/* VALIDATES THE USER  */
-		
-		if (validateUser.validateUser(loginUser)) {
-		
-			validateUser.loadUser(loginUser);
-			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
-	        Scene newScene = new Scene(root);
-	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-	        window.setScene(newScene);
-	        window.show();
+		if (updater.userUpdater(updateUser)) {
+			
+			 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			 alert.setHeaderText(null);
+			 alert.setTitle("Info");
+			 alert.setContentText("Usuari actualitzat amb exit");
+			 alert.showAndWait();
 		}else {
 			
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 		    alert.setHeaderText(null);
 		    alert.setTitle("Error");
-		    alert.setContentText("Usuari o contrasenya incorrectes");
+		    alert.setContentText("Error a la hora d'actualitzar el usuari");
 		    alert.showAndWait();
 		}
-		
 	}
+	
 }
-
-
-

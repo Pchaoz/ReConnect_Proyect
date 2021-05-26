@@ -30,6 +30,16 @@ public class UserVO {
 		this.imgUrl = "https://www.antiagingya.com/es/wp-content/uploads/2015/01/img-default-autores.jpg";
 	}
 	
+	public UserVO(String username, String email, String password, String name, String surname, String imgUrl) {
+
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.imgUrl = imgUrl;
+	}
+	
 	public int getUid() {
 		return uid;
 	}

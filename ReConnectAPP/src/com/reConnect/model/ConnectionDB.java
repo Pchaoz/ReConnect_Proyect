@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDB {
-	private String connectionURL =  "jdbc:mysql://localhost:3306/reConnectDB";
-	private	String user = "root";
-	private String password = "root";
+	private String connectionURL =  "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11415013";
+	private	String user = "sql11415013";
+	private String password = "xMclkcp8AF";
 
 	public Connection connection() throws SQLException {
 		Connection conn = null;
