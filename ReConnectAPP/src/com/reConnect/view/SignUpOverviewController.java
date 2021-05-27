@@ -55,7 +55,6 @@ public class SignUpOverviewController {
 		HashPassword hashPassword = new HashPassword();
 		String hashedPassword = hashPassword.hashPassword(password);
 		if(isInputCorrect(password, confirmP)) {
-			System.out.println("si");
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
 			createUser.createUser(newUser);
 			//Controller used to change screen
@@ -66,7 +65,9 @@ public class SignUpOverviewController {
 	        window.show();
 		}
 	}
+
 	
+
 	private boolean isInputCorrect(String password, String confirmP) {
 		boolean isCorrect;
 		if(password.equals(confirmP)) {
