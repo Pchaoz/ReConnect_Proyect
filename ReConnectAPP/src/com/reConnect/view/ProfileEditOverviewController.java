@@ -37,11 +37,17 @@ public class ProfileEditOverviewController {
 	@FXML
 	private Button updateButton;
 	
+	SignInOverviewController dataL; 
+	
+	SignUpOverviewController dataR; 
+	
 	public void handleUpdate(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
 		/* VARIABLES THAT GET THE DATA */
-		
 		HashPassword hash = new HashPassword();
+		
+		boolean logIn = false;
+		boolean SignUp = false;
 		
 		String username = usernameField.getText();
 		String email = emailField.getText();
@@ -53,6 +59,16 @@ public class ProfileEditOverviewController {
 		
 		UserDAO updater = new UserDAO();
 		UserVO updateUser = new UserVO(username, email, hashedPassword, name, surname, imgurl);
+		if (logIn = true) {
+			
+			updateUser.setUid(SignInOverviewController.getUID());
+			
+		}else if (SignUp = true){
+			
+			
+			updateUser.setUid(SignUpOverviewController.getUID());
+		}
+		
 		
 		/* UPDATES THE USER */
 		

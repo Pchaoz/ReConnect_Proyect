@@ -31,6 +31,8 @@ public class SignUpOverviewController {
 	private TextField surnameField;
 	MainApp main;
 
+	public static int uid;
+	
 	@FXML
 	public void initialize() {
 
@@ -58,6 +60,11 @@ public class SignUpOverviewController {
 			System.out.println("si");
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
 			createUser.createUser(newUser);
+			
+			createUser.loadUser(newUser);
+			
+			uid = newUser.getUid();
+			
 			//Controller used to change screen
 			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
 			Scene newScene = new Scene(root);
@@ -75,5 +82,9 @@ public class SignUpOverviewController {
 			isCorrect = false;
 		}
 		return isCorrect;
+	}
+	
+	public static int getUID() {
+		return uid;
 	}
 }

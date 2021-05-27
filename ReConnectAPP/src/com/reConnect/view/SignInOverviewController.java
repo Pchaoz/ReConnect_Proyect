@@ -29,7 +29,11 @@ public class SignInOverviewController {
 	
 	@FXML
 	private Button signInButton;
-
+	
+	private UserVO userLoged;
+	
+	public static int uid;
+	
 	/** METHODS **/
 	
 	@FXML
@@ -49,15 +53,18 @@ public class SignInOverviewController {
 		String password = passwordField.getText();
 		String hashedPassword = hash.hashPassword(password);
 		
-		UserVO loginUser = new UserVO(username, hashedPassword);
+		UserVO userLoged = new UserVO(username, hashedPassword);
 		UserDAO validateUser = new UserDAO();
 		
 		
 		/* VALIDATES THE USER  */
 		
-		if (validateUser.validateUser(loginUser)) {
+		if (validateUser.validateUser(userLoged)) {
 		
-			validateUser.loadUser(loginUser);
+			validateUser.loadUser(userLoged);
+			
+			uid = userLoged.getUid();
+			
 			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
 	        Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -71,9 +78,12 @@ public class SignInOverviewController {
 		    alert.setContentText("Usuari o contrasenya incorrectes");
 		    alert.showAndWait();
 		}
-		
 	}
+	
+
+	
+	public static int getUID() {
+		return uid;
+	}
+	
 }
-
-
-

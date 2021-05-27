@@ -142,7 +142,7 @@ public class UserDAO {
 			psUpdateUser.setString(6, user.getImgUrl());
 			psUpdateUser.setInt(7, user.getUid());
 			
-			psUpdateUser.executeQuery();
+			psUpdateUser.executeUpdate();
 			return true;
 		
 		}catch (SQLException e) {
@@ -156,7 +156,8 @@ public class UserDAO {
 	/*
 	 * LOADS ALL THE USER INFORMATION INTO THE UserVO
 	 */
-	public void loadUser(UserVO user) {
+	public UserVO loadUser(UserVO user) {
+		
 		
 		try {
 			
@@ -165,26 +166,27 @@ public class UserDAO {
 			PreparedStatement psLoadUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME LIKE ?");
 			
 			psLoadUser.setString(1, user.getUsername());
+		
 			rs = psLoadUser.executeQuery();
 			
 			while(rs.next()) {
-				
-				user.setUid(Integer.parseInt(rs.getString("UID")));
-				user.setUsername(rs.getString("USERNAME"));
-				user.setEmail(rs.getString("EMAIL"));
-				user.setPassword(rs.getString("PASSWORD"));
-				user.setName(rs.getString("NAME"));
-				user.setSurname(rs.getString("SURNAME"));
-				user.setImgUrl(rs.getString("IMGURL"));
-				
+
+				user.setUid(Integer.parseInt(rs.getString(1)));
+				user.setUsername(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setPassword(rs.getString(4));
+				user.setName(rs.getString(5));
+				user.setSurname(rs.getString(6));
+				user.setImgUrl(rs.getString(7));
+
 			}
-			
+	
 		}catch (SQLException e) {
 			
 			
 		}
 		
-		
+		return user;
 		
 	}
 }
