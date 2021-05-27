@@ -70,7 +70,7 @@ public class ProfileEditOverviewController {
 		}
 		
 		
-		/* UPDATES THE USER */
+		/* UPDATES THE USER  */
 		
 		if (updater.userUpdater(updateUser)) {
 			
