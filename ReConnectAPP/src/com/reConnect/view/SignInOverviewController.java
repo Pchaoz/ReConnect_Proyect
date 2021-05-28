@@ -30,7 +30,8 @@ public class SignInOverviewController {
 	@FXML
 	private Button signInButton;
 	
-	private UserVO userLoged;
+	@FXML
+	private Button returnButton;
 	
 	public static int uid;
 	
@@ -80,6 +81,15 @@ public class SignInOverviewController {
 		}
 	}
 	
+	@FXML
+	public void handleReturn(ActionEvent event) throws IOException  {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
+        Scene newScene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(newScene);
+        window.show();
+	}
 
 	
 	public static int getUID() {
