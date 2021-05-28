@@ -65,7 +65,7 @@ public class SignUpOverviewController {
 			uid = newUser.getUid();
 			
 			//Controller used to change screen
-			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
 			Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);
@@ -83,6 +83,16 @@ public class SignUpOverviewController {
 			isCorrect = false;
 		}
 		return isCorrect;
+	}
+	
+	@FXML
+	public void handleReturn(ActionEvent event) throws IOException  {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
+        Scene newScene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(newScene);
+        window.show();
 	}
 	
 	public static int getUID() {
