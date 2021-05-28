@@ -41,7 +41,12 @@
             <Font name="Times New Roman" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="signInButton" layoutX="148.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="51.0" prefWidth="105.0" text="Entra">
+      <Button fx:id="returnButton" layoutX="55.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleReturn" prefHeight="51.0" prefWidth="123.0" text="Torna al inici">
+         <font>
+            <Font name="Times New Roman" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="signInButton1" layoutX="241.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="51.0" prefWidth="105.0" text="Entra">
          <font>
             <Font name="Times New Roman" size="17.0" />
          </font>

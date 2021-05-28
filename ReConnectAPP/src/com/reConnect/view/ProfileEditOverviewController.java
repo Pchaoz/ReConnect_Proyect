@@ -59,34 +59,48 @@ public class ProfileEditOverviewController {
 		
 		UserDAO updater = new UserDAO();
 		UserVO updateUser = new UserVO(username, email, hashedPassword, name, surname, imgurl);
-		if (logIn = true) {
-			
-			updateUser.setUid(SignInOverviewController.getUID());
-			
-		}else if (SignUp = true){
-			
-			
-			updateUser.setUid(SignUpOverviewController.getUID());
-		}
+
 		
-		
-		/* UPDATES THE USER  */
-		
-		if (updater.userUpdater(updateUser)) {
+			if (logIn = true) {
+				
+				updateUser.setUid(SignInOverviewController.getUID());
+				
+			}else if (SignUp = true){
+				
+				
+				updateUser.setUid(SignUpOverviewController.getUID());
+			}
 			
-			 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			 alert.setHeaderText(null);
-			 alert.setTitle("Info");
-			 alert.setContentText("Usuari actualitzat amb exit");
-			 alert.showAndWait();
-		}else {
-			
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-		    alert.setHeaderText(null);
-		    alert.setTitle("Error");
-		    alert.setContentText("Error a la hora d'actualitzar el usuari");
-		    alert.showAndWait();
-		}
+			if ( usernameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty() || nameField.getText().trim().isEmpty() || surrnameField.getText().trim().isEmpty() || imgurlField.getText().trim().isEmpty()) {
+				
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+			    alert.setHeaderText(null);
+			    alert.setTitle("Error");
+			    alert.setContentText("Omple tots els camps abans d'actualitzar el teu perfil.");
+			    alert.showAndWait();
+				
+			}else {
+				
+				/* UPDATES THE USER  */
+				
+				if (updater.userUpdater(updateUser)) {
+					
+					 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					 alert.setHeaderText(null);
+					 alert.setTitle("Info");
+					 alert.setContentText("Usuari actualitzat amb exit");
+					 alert.showAndWait();
+				}else {
+					
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+				    alert.setHeaderText(null);
+				    alert.setTitle("Error");
+				    alert.setContentText("Error a la hora d'actualitzar el usuari");
+				    alert.showAndWait();
+				}
+				
+			}
+		
 	}
 	
 }
