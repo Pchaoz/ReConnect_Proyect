@@ -1,12 +1,15 @@
 package com.reConnect;
-import java.io.IOException;
 
+import com.reConnect.model.PostDAO;
+import com.reConnect.model.PostVO;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -14,6 +17,32 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 	private Stage primaryStage;
+	
+    /**
+     * The data as an observable list of Persons.
+     */
+    private ObservableList<PostVO> personData = FXCollections.observableArrayList();
+
+    /**
+     * Constructor
+     */
+    public MainApp() {
+    	PostDAO daoProva = new PostDAO();
+		ArrayList<PostVO> arraylist = daoProva.obtainAllPosts();
+		
+		for(int i =0 ; i<arraylist.size(); i++) {
+		     personData.add(arraylist.get(i));
+		}
+    }
+
+    /**
+     * Returns the data as an observable list of Persons. 
+     * @return
+     */
+    public ObservableList<PostVO> getPersonData() {
+        return personData;
+    }
+	
 	
 	public static void main(String[] args) {
 		launch(args);
