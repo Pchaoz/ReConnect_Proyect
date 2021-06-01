@@ -3,16 +3,22 @@ package com.reConnect.view;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.reConnect.model.UserDAO;
 import com.reConnect.model.UserVO;
 import com.reConnect.util.HashPassword;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 public class ProfileEditOverviewController {
 
@@ -37,9 +43,39 @@ public class ProfileEditOverviewController {
 	@FXML
 	private Button updateButton;
 	
+	@FXML
+    private JFXDrawer drawer;
+	
+	@FXML
+	private JFXHamburger hamburger;
+
+	
 	SignInOverviewController dataL; 
 	
 	SignUpOverviewController dataR; 
+	
+	 @FXML
+    public void initialize() throws IOException {
+		 
+		 /* LOADS THE SCROLL MENU */
+    	
+    	VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
+    	drawer.setSidePane(box);
+    	
+    	HamburgerBackArrowBasicTransition burger = new HamburgerBackArrowBasicTransition(hamburger);
+    	burger.setRate(-1);
+    	hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+    		burger.setRate(burger.getRate() * -1);
+    		burger.play();
+    		
+    		if (drawer.isOpened()) {
+    	        drawer.close();
+    	    } else {
+    	        drawer.open();
+    	    }
+    	});
+    	
+	 }
 	
 	public void handleUpdate(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
@@ -60,6 +96,7 @@ public class ProfileEditOverviewController {
 		UserDAO updater = new UserDAO();
 		UserVO updateUser = new UserVO(username, email, hashedPassword, name, surname, imgurl);
 
+		/* TAKE THE DATA FROM LOG IN OR REGISTER (uid) */
 		
 			if (logIn = true) {
 				
@@ -70,6 +107,8 @@ public class ProfileEditOverviewController {
 				
 				updateUser.setUid(SignUpOverviewController.getUID());
 			}
+			
+			/* DON'T UPDATE THE USER IF THERE'S ANY EMPTY FIELD */
 			
 			if ( usernameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty() || nameField.getText().trim().isEmpty() || surrnameField.getText().trim().isEmpty() || imgurlField.getText().trim().isEmpty()) {
 				

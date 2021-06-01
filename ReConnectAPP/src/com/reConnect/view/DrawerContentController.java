@@ -50,6 +50,11 @@ public class DrawerContentController {
     @FXML
     void handleMessages(ActionEvent event) throws IOException {
 
+    	Parent root = FXMLLoader.load(getClass().getResource("UserListOverview.fxml"));
+        Scene newScene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(newScene);
+        window.show();
     }
 
     @FXML
