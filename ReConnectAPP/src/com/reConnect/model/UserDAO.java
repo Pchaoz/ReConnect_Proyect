@@ -100,7 +100,7 @@ public class UserDAO {
 			
 			connection = getConnection();
 			
-			PreparedStatement psValidateUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?");
+			PreparedStatement psValidateUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?");	
 			
 			psValidateUser.setString(1, user.getUsername());
 			psValidateUser.setString(2, user.getPassword());

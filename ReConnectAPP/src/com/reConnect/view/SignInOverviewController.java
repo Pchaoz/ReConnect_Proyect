@@ -33,7 +33,7 @@ public class SignInOverviewController {
 	@FXML
 	private Button returnButton;
 	
-	public static int uid;
+	private static int uid;
 	
 	/** METHODS **/
 	
@@ -66,7 +66,7 @@ public class SignInOverviewController {
 			
 			uid = userLoged.getUid();
 			
-			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("UserListOverview.fxml"));
 	        Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);

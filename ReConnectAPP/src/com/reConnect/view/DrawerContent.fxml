@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="500.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reConnect.view.DrawerContentController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="mainPageButton" onAction="#handleMainPage" prefHeight="90.0" prefWidth="200.0" text="Inici" />
+      <JFXButton fx:id="profileButton" onAction="#handleProfile" prefHeight="90.0" prefWidth="200.0" text="Perfil" />
+      <JFXButton fx:id="messagesButton" onAction="#handleMessages" prefHeight="90.0" prefWidth="200.0" text="Missatges" />
+      <JFXButton fx:id="logOutButton" onAction="#handleLogOut" prefHeight="90.0" prefWidth="200.0" text="Tanca Sessio" />
+   </children>
+</VBox>
