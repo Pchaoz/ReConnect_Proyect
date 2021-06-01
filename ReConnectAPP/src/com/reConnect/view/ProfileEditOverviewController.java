@@ -54,7 +54,7 @@ public class ProfileEditOverviewController {
 	
 	SignUpOverviewController dataR; 
 	
-	 @FXML
+	@FXML
     public void initialize() throws IOException {
 		 
 		 /* LOADS THE SCROLL MENU */
