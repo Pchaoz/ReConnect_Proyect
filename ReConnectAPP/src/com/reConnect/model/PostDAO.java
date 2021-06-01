@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class PostDAO {
-	
 	private Connection connection = null;
 	private PreparedStatement ps = null; 
 	private ResultSet rs = null; 
@@ -38,6 +37,8 @@ public class PostDAO {
 				postVOAux.setTitle(rs.getString(3));
 				postVOAux.setMessage(rs.getString(4));
 				postVOAux.setDate(rs.getDate(5));
+				
+				System.out.println(postVOAux.getMessage());
 				postVO.add(postVOAux);
 			}
 			return postVO;
@@ -59,23 +60,20 @@ public class PostDAO {
 	}
 	
 	
-	public void createUser(UserVO user) {
+	public void createPost(PostVO post) {
 		try {
 			connection = getConnection();
-			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)"
-					+ "VALUES(?, ?, ?, ?, ?, ?)");
-			psCreateUser.setString(1, user.getUsername());
-			psCreateUser.setString(2, user.getEmail());
-			psCreateUser.setString(3, user.getPassword());
-			psCreateUser.setString(4, user.getName());
-			psCreateUser.setString(5, user.getSurname());
-			psCreateUser.setString(6, user.getImgUrl());
+			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO POST(USERID, TITLE, MESSAGE, DATE)"
+					+ "VALUES(?, ?, ?, NOW())");
+			psCreateUser.setInt(1, post.getUid());
+			psCreateUser.setString(2, post.getTitle());
+			psCreateUser.setString(3, post.getMessage());
 			psCreateUser.executeUpdate();
 		} catch (SQLException e) {
+            e.printStackTrace();
 			Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("ERROR!");
-            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
-            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+            alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
             alert.showAndWait();
 		} finally {
 			try {
@@ -88,6 +86,6 @@ public class PostDAO {
 			catch (Exception e) {
 				System.out.println("ERROR");
 			} 
-		}
+		} 
 	}
 }

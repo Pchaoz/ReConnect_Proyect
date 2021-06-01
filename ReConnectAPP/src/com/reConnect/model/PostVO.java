@@ -13,6 +13,12 @@ public class PostVO {
 		
 	}
 	
+	public PostVO(int uid, String title, String message) {
+		this.uid = uid;
+		this.title = title;
+		this.message = message;
+	}
+	
 	public PostVO(String title, String message, Date date) {
 		this.title = title;
 		this.message = message;

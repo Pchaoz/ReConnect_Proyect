@@ -33,13 +33,14 @@ public class SignInOverviewController {
 	@FXML
 	private Button returnButton;
 	
-	private static int uid;
-	
+	public static int uid;
+	public static String username2;
+
 	/** METHODS **/
 	
 	@FXML
 	public void initialize() {
-
+		System.out.println("testtttt");
 	}
 
 	@FXML
@@ -65,8 +66,9 @@ public class SignInOverviewController {
 			validateUser.loadUser(userLoged);
 			
 			uid = userLoged.getUid();
+			username2 = userLoged.getUsername();
 			
-			Parent root = FXMLLoader.load(getClass().getResource("UserListOverview.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
 	        Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);
@@ -83,7 +85,6 @@ public class SignInOverviewController {
 	
 	@FXML
 	public void handleReturn(ActionEvent event) throws IOException  {
-		
 		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
         Scene newScene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -96,4 +97,7 @@ public class SignInOverviewController {
 		return uid;
 	}
 	
+	public static String getUsername() {
+		return username2;
+	}
 }

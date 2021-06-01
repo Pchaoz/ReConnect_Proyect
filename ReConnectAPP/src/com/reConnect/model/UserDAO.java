@@ -43,18 +43,6 @@ public class UserDAO {
 			return userVO;
 		} catch (SQLException e) {
 			// TODO: handle exception
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-				if(connection != null) connection.close();
-			} catch (SQLException e) {
-				System.out.println("SQLException ERROR");
-				
-			} 
-			catch (Exception e) {
-				System.out.println("ERROR");
-			} 
 		}
 		return userVO;
 	}
@@ -78,17 +66,6 @@ public class UserDAO {
             alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
             alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
             alert.showAndWait();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-				if(connection != null) connection.close();
-			} catch (SQLException e) {
-				System.out.println("SQLException ERROR");
-			} 
-			catch (Exception e) {
-				System.out.println("ERROR");
-			} 
 		}
 	}
 	
@@ -97,30 +74,20 @@ public class UserDAO {
 		boolean check = false;
 		
 		try {
-			
 			connection = getConnection();
-			
-			PreparedStatement psValidateUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?");	
-			
+			PreparedStatement psValidateUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?");
 			psValidateUser.setString(1, user.getUsername());
 			psValidateUser.setString(2, user.getPassword());
-			
 			ResultSet rs = psValidateUser.executeQuery();
-			
 			if (rs.next()) {
-				
 				check = true;
 			}else {
-			
 				check = false;
 			}
-	
 		} catch (SQLException e) {	
-			
+			e.printStackTrace();
 		}
-		
 		return check;
-		
 	}
 	
 	/*
@@ -157,20 +124,12 @@ public class UserDAO {
 	 * LOADS ALL THE USER INFORMATION INTO THE UserVO
 	 */
 	public UserVO loadUser(UserVO user) {
-		
-		
 		try {
-			
 			connection = getConnection();
-
 			PreparedStatement psLoadUser = connection.prepareStatement("SELECT * FROM USER WHERE USERNAME LIKE ?");
-			
 			psLoadUser.setString(1, user.getUsername());
-		
 			rs = psLoadUser.executeQuery();
-			
 			while(rs.next()) {
-
 				user.setUid(Integer.parseInt(rs.getString(1)));
 				user.setUsername(rs.getString(2));
 				user.setEmail(rs.getString(3));
@@ -178,15 +137,9 @@ public class UserDAO {
 				user.setName(rs.getString(5));
 				user.setSurname(rs.getString(6));
 				user.setImgUrl(rs.getString(7));
-
 			}
-	
-		}catch (SQLException e) {
-			
-			
+		} catch (SQLException e) {			
 		}
-		
 		return user;
-		
 	}
 }
