@@ -22,24 +22,18 @@ public class PostOverviewController {
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
-    @FXML
-    public void initialize() {
-        // Initialize the person table with the two columns.    	
-    	titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
-    	bodyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMessage())); 
-    	
-    	/*try {
 
-    		trastoDAO = new TrastoDAO();
-    		trastosList = trastoDAO.buscarTrasto(barraBuscadorra.getText());
-
-    		//Netejar la llista d'empleats
-    		trastosTable.getItems().clear();
-
-    		//carregarlos a empleatable
-    		for(int i=0; i trastosTable.getItems().add(trastosList.get(i));
-    	}*/
+    public PostOverviewController() {
+    	initialize();
     }
+    
+    @FXML
+	public void initialize() {
+    	// Initialize the person table with the two columns.    	
+    	/*titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
+    	bodyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMessage())); */
+    	System.out.println("test");
+	}
     
     /**
      * Is called by the main application to give a reference back to itself.
