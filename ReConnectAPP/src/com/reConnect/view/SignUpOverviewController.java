@@ -72,7 +72,9 @@ public class SignUpOverviewController {
 	        window.show();
 		}
 	}
+
 	
+
 	private boolean isInputCorrect(String password, String confirmP) {
 		boolean isCorrect;
 		if(password.equals(confirmP)) {

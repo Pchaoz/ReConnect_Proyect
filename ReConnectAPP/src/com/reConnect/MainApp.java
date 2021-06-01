@@ -1,17 +1,24 @@
 package com.reConnect;
 import java.io.IOException;
+
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
 public class MainApp extends Application {
 	private Stage primaryStage;
 	
-	/**
-	 * 
-	 */
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -19,10 +26,6 @@ public class MainApp extends Application {
         showAppOverview();
 	}
 	
-	
-	/**
-	 * 
-	 */
 	public void showAppOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -36,19 +39,7 @@ public class MainApp extends Application {
         }
     }
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public Stage getPrimaryStage() {
 	        return primaryStage;
-	}
-	
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
 	}
 }
