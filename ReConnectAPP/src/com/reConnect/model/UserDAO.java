@@ -20,7 +20,9 @@ public class UserDAO {
 		conn = connDB.connection();
 		return conn;
 	}
-	
+	/*
+	 * Metode per a crear un ArrayList de UserVO amb tots el usuaris de la base de dades
+	 */
 	public ArrayList<UserVO> obtainAllUsers(){
 		UserVO userVOAux;
 		ArrayList<UserVO> userVO = null;
@@ -47,9 +49,9 @@ public class UserDAO {
 		return userVO;
 	}
 	/*
-	 * VALIDATES THE USER IN THE DATABASE FOR LOGIN
+	 * Metode per a registrar el usuari a la base de dades
 	 */
-	public void createUser(UserVO user) {
+	public boolean createUser(UserVO user) {
 		try {
 			connection = getConnection();
 			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)" + " VALUES(?, ?, ?, ?, ?, ?)");
@@ -60,15 +62,18 @@ public class UserDAO {
 			psCreateUser.setString(5, user.getSurname());
 			psCreateUser.setString(6, user.getImgUrl());
 			psCreateUser.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("ERROR!");
-            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
-            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
-            alert.showAndWait();
+			
+			e.printStackTrace();
+			
+			return false;
 		}
 	}
-	
+	/*
+	 * Metode per a validar el usuari a la hora de iniciar sessió
+	 */
 	public boolean validateUser(UserVO user) {
 		
 		boolean check = false;
@@ -91,7 +96,7 @@ public class UserDAO {
 	}
 	
 	/*
-	 * UPDATES THE USER ON THE DATABASE
+	 * Metode que actualitza al usuari en la base de dades
 	 */
 	public boolean userUpdater(UserVO user) {
 	
@@ -121,7 +126,7 @@ public class UserDAO {
 		
 	}
 	/*
-	 * LOADS ALL THE USER INFORMATION INTO THE UserVO
+	 * Metode per a carregar tota la informació del usuari una vegada iniciada sessió o registrarse
 	 */
 	public UserVO loadUser(UserVO user) {
 		try {

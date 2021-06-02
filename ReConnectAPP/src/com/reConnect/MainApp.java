@@ -40,7 +40,7 @@ public class MainApp extends Application {
      * @return
      */
     public ObservableList<PostVO> getPersonData() {
-	     System.out.println(personData.size());
+	     
         return personData;
     }
 	

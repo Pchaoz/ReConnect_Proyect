@@ -32,7 +32,7 @@ public class PostOverviewController {
     	// Initialize the person table with the two columns.    	
     	/*titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
     	bodyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMessage())); */
-    	System.out.println("test");
+    	
 	}
     
     /**

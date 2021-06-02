@@ -30,10 +30,11 @@ public class StartMenuOverviewController {
 		
 	}
 	
-	/*
-	 * Botó per a iniciar sessió
-	 */
+	
 	@FXML
+	/*
+	 * Method that redirects the user to the login page
+	 */
     private void handleChangeLogin(ActionEvent event) throws IOException{
             Parent root = FXMLLoader.load(getClass().getResource("SignInOverview.fxml"));
             Scene newScene = new Scene(root);
@@ -43,6 +44,9 @@ public class StartMenuOverviewController {
     }
 	
 	@FXML
+	/*
+	 * Method that redirects the user to the register page
+	 */
     private void handleChangeSignUp(ActionEvent event) throws IOException{
             Parent root = FXMLLoader.load(getClass().getResource("SignUpOverview.fxml"));
             Scene newScene = new Scene(root);

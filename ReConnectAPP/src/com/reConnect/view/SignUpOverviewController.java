@@ -12,8 +12,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 public class SignUpOverviewController {
 
@@ -33,11 +35,15 @@ public class SignUpOverviewController {
 
 	public static int uid;
 	
+	public static String usr;
+	
 	@FXML
 	public void initialize() {
 
 	}
 
+
+	@FXML
 	/**
 	 * Check if username exists or not
 	 * Hash password
@@ -45,7 +51,6 @@ public class SignUpOverviewController {
 	 * Check if passwords are the same
 	 * @throws NoSuchAlgorithmException 
 	 */
-	@FXML
 	private void handleNewUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
 		String username = usernameField.getText();
 		String email = emailField.getText();
@@ -58,18 +63,29 @@ public class SignUpOverviewController {
 		String hashedPassword = hashPassword.hashPassword(password);
 		if(isInputCorrect(password, confirmP)) {
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
-			createUser.createUser(newUser);
-			
-			createUser.loadUser(newUser);
+			if (createUser.createUser(newUser)) {
+				
+				createUser.loadUser(newUser);
 			
 			uid = newUser.getUid();
 			
 			//Controller used to change screen
-			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
 			Scene newScene = new Scene(root);
 	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	        window.setScene(newScene);
 	        window.show();
+	        
+			}else {
+				
+				Alert alert = new Alert(AlertType.WARNING);
+	            alert.setTitle("ERROR!");
+	            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
+	            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+	            alert.showAndWait();
+			}
+			
+			
 		}
 	}
 
@@ -86,6 +102,9 @@ public class SignUpOverviewController {
 	}
 	
 	@FXML
+	/*
+	 * Method to returns the user into the login/register page
+	 */
 	public void handleReturn(ActionEvent event) throws IOException  {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
@@ -97,5 +116,9 @@ public class SignUpOverviewController {
 	
 	public static int getUID() {
 		return uid;
+	}
+	
+	public static String getUsr() {
+		return usr;
 	}
 }

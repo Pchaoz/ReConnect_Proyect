@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -51,10 +52,14 @@ public class MainPageOverviewController {
 	   		burger.play();
 	   		
 	   		if (drawer.isOpened()) {
-	   	        drawer.close();
-	   	    } else {
-	   	        drawer.open();
-	   	    }
+    			/* CLOSE THE SCROLL MENU */
+    			
+    	        drawer.close();
+    	    } else {
+    	    	/* OPENS THE SCROLL MENU */
+    	    	
+    	        drawer.open();
+    	    }
 	   	});
 		
 		/*URI url = new URI("http://userserve-ak.last.fm/serve/126/8636005.jpg");
@@ -79,7 +84,7 @@ public class MainPageOverviewController {
     
     @FXML
     public void handleSubmitPost() {
-    	System.out.println("test");
+    	
     	if(titleTextField.getText().isEmpty() || bodyTextField.getText().isEmpty()) {
     		Alert alert = new Alert(Alert.AlertType.ERROR);
 		    alert.setHeaderText(null);
@@ -89,8 +94,21 @@ public class MainPageOverviewController {
     	} else {
     		PostVO newPost = new PostVO(SignInOverviewController.getUID(), titleTextField.getText(), bodyTextField.getText());
     		PostDAO createPost = new PostDAO();
-    		createPost.createPost(newPost);
+    		if (createPost.createPost(newPost)) {
+    			
+    			
+    		}else {
+    			
+    			Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERROR!");
+                alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
+                alert.showAndWait();
+    		}
+    		
+    		
+ 			
     	}
+    	
     }
     
     

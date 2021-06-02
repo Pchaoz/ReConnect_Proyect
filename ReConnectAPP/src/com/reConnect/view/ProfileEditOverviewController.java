@@ -69,14 +69,20 @@ public class ProfileEditOverviewController {
     		burger.play();
     		
     		if (drawer.isOpened()) {
+    			/* CLOSE THE SCROLL MENU */
+    			
     	        drawer.close();
     	    } else {
+    	    	/* OPENS THE SCROLL MENU */
+    	    	
     	        drawer.open();
     	    }
     	});
     	
 	 }
-	
+	/*
+	 * Method that updates the user
+	 */
 	public void handleUpdate(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
 		/* VARIABLES THAT GET THE DATA */

@@ -1,5 +1,6 @@
 package com.reConnect.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -18,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;	
 
 public class SignInOverviewController {
 
@@ -40,9 +43,12 @@ public class SignInOverviewController {
 	
 	@FXML
 	public void initialize() {
-		System.out.println("testtttt");
+		
 	}
 
+	/*
+	 * Method that validates the user to log in
+	 */
 	@FXML
 	public void handleLogin(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		
@@ -84,6 +90,9 @@ public class SignInOverviewController {
 	}
 	
 	@FXML
+	/*
+	 * Method to returns to the login/register page
+	 */
 	public void handleReturn(ActionEvent event) throws IOException  {
 		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
         Scene newScene = new Scene(root);
