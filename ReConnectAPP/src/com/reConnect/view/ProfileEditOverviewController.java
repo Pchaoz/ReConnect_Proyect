@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.reConnect.MainApp;
 import com.reConnect.model.UserDAO;
 import com.reConnect.model.UserVO;
 import com.reConnect.util.HashPassword;
@@ -19,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ProfileEditOverviewController {
 
@@ -49,6 +51,9 @@ public class ProfileEditOverviewController {
 	@FXML
 	private JFXHamburger hamburger;
 
+	private MainApp mainApp;
+	
+	private Stage window;
 	
 	SignInOverviewController dataL; 
 	
@@ -141,5 +146,10 @@ public class ProfileEditOverviewController {
 			}
 		
 	}
+	
+    public void setMainApp(MainApp mainApp) throws IOException {
+        this.mainApp = mainApp;
+    	window = mainApp.getStage();
+    }
 	
 }

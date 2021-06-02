@@ -29,13 +29,15 @@ public class SignUpOverviewController {
 	private TextField nameField;
 	@FXML
 	private TextField surnameField;
-	MainApp main;
+	private Stage window;
+
+	MainApp mainApp;
 
 	public static int uid;
 	
 	@FXML
 	public void initialize() {
-
+		
 	}
 
 	/**
@@ -47,6 +49,8 @@ public class SignUpOverviewController {
 	 */
 	@FXML
 	private void handleNewUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
+		//window = mainApp.getStage();
+
 		String username = usernameField.getText();
 		String email = emailField.getText();
 		String password = passwordField.getText();
@@ -65,11 +69,7 @@ public class SignUpOverviewController {
 			uid = newUser.getUid();
 			
 			//Controller used to change screen
-			Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
-			Scene newScene = new Scene(root);
-	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-	        window.setScene(newScene);
-	        window.show();
+			mainApp.showMainPageOverview(event, window);
 		}
 	}
 
@@ -87,15 +87,16 @@ public class SignUpOverviewController {
 	
 	@FXML
 	public void handleReturn(ActionEvent event) throws IOException  {
-		
-		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+		window = mainApp.getStage();
+		mainApp.showStartPageOverview(event, window);
 	}
 	
 	public static int getUID() {
 		return uid;
 	}
+	
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        // Add observable list data to the table
+    }
 }
