@@ -31,7 +31,9 @@ public class SignUpOverviewController {
 	private TextField nameField;
 	@FXML
 	private TextField surnameField;
-	MainApp main;
+	private Stage window;
+
+	MainApp mainApp;
 
 	public static int uid;
 	
@@ -39,7 +41,7 @@ public class SignUpOverviewController {
 	
 	@FXML
 	public void initialize() {
-
+		
 	}
 
 
@@ -52,6 +54,8 @@ public class SignUpOverviewController {
 	 * @throws NoSuchAlgorithmException 
 	 */
 	private void handleNewUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
+		//window = mainApp.getStage();
+
 		String username = usernameField.getText();
 		String email = emailField.getText();
 		String password = passwordField.getText();
@@ -70,22 +74,7 @@ public class SignUpOverviewController {
 			uid = newUser.getUid();
 			
 			//Controller used to change screen
-			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
-			Scene newScene = new Scene(root);
-	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-	        window.setScene(newScene);
-	        window.show();
-	        
-			}else {
-				
-				Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("ERROR!");
-	            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
-	            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
-	            alert.showAndWait();
-			}
-			
-			
+			mainApp.showMainPageOverview(event, window);
 		}
 	}
 
@@ -106,19 +95,16 @@ public class SignUpOverviewController {
 	 * Method to returns the user into the login/register page
 	 */
 	public void handleReturn(ActionEvent event) throws IOException  {
-		
-		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+		window = mainApp.getStage();
+		mainApp.showStartPageOverview(event, window);
 	}
 	
 	public static int getUID() {
 		return uid;
 	}
 	
-	public static String getUsr() {
-		return usr;
-	}
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        // Add observable list data to the table
+    }
 }

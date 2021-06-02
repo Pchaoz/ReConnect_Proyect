@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import com.reConnect.MainApp;
 import com.reConnect.model.UserDAO;
 import com.reConnect.model.UserVO;
 import com.reConnect.util.HashPassword;
@@ -18,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;	
@@ -38,12 +40,13 @@ public class SignInOverviewController {
 	
 	public static int uid;
 	public static String username2;
+	private MainApp mainApp;
+	Stage window;
 
 	/** METHODS **/
 	
 	@FXML
 	public void initialize() {
-		
 	}
 
 	/*
@@ -51,10 +54,8 @@ public class SignInOverviewController {
 	 */
 	@FXML
 	public void handleLogin(ActionEvent event) throws IOException, NoSuchAlgorithmException {
-		
+		window = mainApp.getStage();
 		/* VARIABLES THAT GET THE DATA */
-		
-		
 		HashPassword hash = new HashPassword();
 		
 		String username = usernameField.getText();
@@ -66,21 +67,15 @@ public class SignInOverviewController {
 		
 		
 		/* VALIDATES THE USER  */
-		
 		if (validateUser.validateUser(userLoged)) {
 		
 			validateUser.loadUser(userLoged);
 			
 			uid = userLoged.getUid();
 			username2 = userLoged.getUsername();
-			
-			Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
-	        Scene newScene = new Scene(root);
-	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-	        window.setScene(newScene);
-	        window.show();
-		}else {
-			
+			 // Give the controller access to the main app.
+			mainApp.showMainPageOverview(event, window);
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 		    alert.setHeaderText(null);
 		    alert.setTitle("Error");
@@ -94,12 +89,14 @@ public class SignInOverviewController {
 	 * Method to returns to the login/register page
 	 */
 	public void handleReturn(ActionEvent event) throws IOException  {
-		Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+		window = mainApp.getStage();
+		mainApp.showStartPageOverview(event, window);
 	}
+	
+	
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
 	
 	public static int getUID() {

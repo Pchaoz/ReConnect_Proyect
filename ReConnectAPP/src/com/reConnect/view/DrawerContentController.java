@@ -3,6 +3,7 @@ package com.reConnect.view;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
+import com.reConnect.MainApp;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,18 +27,17 @@ public class DrawerContentController {
 
     @FXML
     private JFXButton logOutButton;
-
+    
+	private MainApp mainApp;
+	Stage window;
+	
     @FXML
     /*
      * Redirects the user into the login/register page
      */
     void handleLogOut(ActionEvent event) throws IOException {
-
-    	Parent root = FXMLLoader.load(getClass().getResource("StartMenuOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+    	window = mainApp.getStage();
+    	mainApp.showStartPageOverview(event, window);
     }
 
     @FXML
@@ -45,12 +45,8 @@ public class DrawerContentController {
      * Redirects the user to the main page
      */
     void handleMainPage(ActionEvent event) throws IOException {
-
-    	Parent root = FXMLLoader.load(getClass().getResource("MainPageOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+    	window = mainApp.getStage();
+    	mainApp.showMainPageOverview(event, window);
     }
 
     @FXML
@@ -71,12 +67,11 @@ public class DrawerContentController {
      * Redirects the user into the profile edit page
      */
     void handleProfile(ActionEvent event) throws IOException {
-
-    	Parent root = FXMLLoader.load(getClass().getResource("ProfileEditOverview.fxml"));
-        Scene newScene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+    	window = mainApp.getStage();
+    	mainApp.showProfileEditOverview(window);
     }
-
+    
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 }

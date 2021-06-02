@@ -2,13 +2,19 @@ package com.reConnect.view;
 
 import java.io.IOException;
 
+import javax.annotation.PostConstruct;
+
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.reConnect.MainApp;
 import com.reConnect.model.PostDAO;
 import com.reConnect.model.PostVO;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -33,24 +39,24 @@ public class MainPageOverviewController {
     private JFXHamburger hamburger;
     @FXML
     private JFXDrawer drawer;
-
-	
-	SignInOverviewController user;
+    private MainApp mainApp;
+    private Stage window; 
+	SignInOverviewController userController;
 	
 	@FXML
 	public void initialize() throws IOException {
 		
 		/* LOADS THE SCROLL MENU */
-	   	
-	   	VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
-	   	drawer.setSidePane(box);
-	   	
+	   //	VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
+	   	//drawer.setSidePane(box);
+
 	   	HamburgerBackArrowBasicTransition burger = new HamburgerBackArrowBasicTransition(hamburger);
 	   	burger.setRate(-1);
 	   	hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+	   		
 	   		burger.setRate(burger.getRate() * -1);
 	   		burger.play();
-	   		
+
 	   		if (drawer.isOpened()) {
     			/* CLOSE THE SCROLL MENU */
     			
@@ -67,24 +73,20 @@ public class MainPageOverviewController {
 		//profileImageView.setImage(image);
 	    usernameLabel.setText(SignInOverviewController.getUsername());
 	}
-	
-	
+
     @FXML
-    public void handlePosts() {
-    	try {
-	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PostOverview.fxml"));
-	        Parent root1 = (Parent) fxmlLoader.load();
-	        Stage stage = new Stage();
-	        stage.setScene(new Scene(root1));  
-	        stage.show();
-	    } catch(Exception e) {
-	        e.printStackTrace();
-	    }
+    public void handlePosts() throws IOException{
+    	window = mainApp.getStage();
+    	mainApp.showPersonOverview(window);
+    }
+    
+    public void setMainApp(MainApp mainApp) throws IOException {
+        this.mainApp = mainApp;
+		mainApp.showLateralMenu(drawer);
     }
     
     @FXML
     public void handleSubmitPost() {
-    	
     	if(titleTextField.getText().isEmpty() || bodyTextField.getText().isEmpty()) {
     		Alert alert = new Alert(Alert.AlertType.ERROR);
 		    alert.setHeaderText(null);
@@ -110,6 +112,4 @@ public class MainPageOverviewController {
     	}
     	
     }
-    
-    
 }
