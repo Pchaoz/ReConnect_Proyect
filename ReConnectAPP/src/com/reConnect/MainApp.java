@@ -185,6 +185,4 @@ public class MainApp extends Application {
 		ProfileEditOverviewController controller1 = loader.getController();
 		controller1.setMainApp(this);
 	}
-
-	
 }

@@ -12,10 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 public class SignUpOverviewController {
 
@@ -64,27 +62,14 @@ public class SignUpOverviewController {
 		String hashedPassword = hashPassword.hashPassword(password);
 		if(isInputCorrect(password, confirmP)) {
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
+			createUser.createUser(newUser);
 			
-			if (createUser.createUser(newUser)) {
-				
-				createUser.loadUser(newUser);
-				
-				uid = newUser.getUid();
-				
-				//Controller used to change screen
-				mainApp.showMainPageOverview(event, window);
-				
-			}else {
-				
-				Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("ERROR!");
-	            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
-	            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
-	            alert.showAndWait();
-	            			
-			}
+			createUser.loadUser(newUser);
 			
+			uid = newUser.getUid();
 			
+			//Controller used to change screen
+			mainApp.showMainPageOverview(event, window);
 		}
 	}
 

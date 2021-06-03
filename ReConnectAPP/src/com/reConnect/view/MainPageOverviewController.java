@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -47,9 +47,6 @@ public class MainPageOverviewController {
 	public void initialize() throws IOException {
 		
 		/* LOADS THE SCROLL MENU */
-	   //	VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
-	   	//drawer.setSidePane(box);
-
 	   	HamburgerBackArrowBasicTransition burger = new HamburgerBackArrowBasicTransition(hamburger);
 	   	burger.setRate(-1);
 	   	hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
@@ -64,9 +61,8 @@ public class MainPageOverviewController {
 	   	    }
 	   	});
 		
-		/*URI url = new URI("http://userserve-ak.last.fm/serve/126/8636005.jpg");
-		Image image = ImageIO.read(url.openStream());*/
-		//profileImageView.setImage(image);
+		Image image = new Image("https://wonder-day.com/wp-content/uploads/2020/10/wonder-day-among-us-21.png");
+		profileImageView.setImage(image);
 	    usernameLabel.setText(SignInOverviewController.getUsername());
 	}
 
@@ -92,15 +88,7 @@ public class MainPageOverviewController {
     	} else {
     		PostVO newPost = new PostVO(SignInOverviewController.getUID(), titleTextField.getText(), bodyTextField.getText());
     		PostDAO createPost = new PostDAO();
-    		
-    		if (createPost.createPost(newPost)) {
-
-    		}else {
-				Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("ERROR!");
-	            alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
-	            alert.showAndWait();
-    		}
+    		createPost.createPost(newPost);
     	}
     }
 }

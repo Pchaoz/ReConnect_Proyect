@@ -49,7 +49,7 @@ public class UserDAO {
 	/*
 	 * VALIDATES THE USER IN THE DATABASE FOR LOGIN
 	 */
-	public boolean createUser(UserVO user) {
+	public void createUser(UserVO user) {
 		try {
 			connection = getConnection();
 			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO USER(USERNAME, EMAIL, PASSWORD, NAME, SURNAME, IMGURL)" + " VALUES(?, ?, ?, ?, ?, ?)");
@@ -60,11 +60,12 @@ public class UserDAO {
 			psCreateUser.setString(5, user.getSurname());
 			psCreateUser.setString(6, user.getImgUrl());
 			psCreateUser.executeUpdate();
-			
-			return true;
 		} catch (SQLException e) {
-	
-            return false;
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("ERROR!");
+            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
+            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+            alert.showAndWait();
 		}
 	}
 	

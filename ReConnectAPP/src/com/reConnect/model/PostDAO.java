@@ -60,7 +60,7 @@ public class PostDAO {
 	}
 	
 	
-	public boolean createPost(PostVO post) {
+	public void createPost(PostVO post) {
 		try {
 			connection = getConnection();
 			PreparedStatement psCreateUser = connection.prepareStatement("INSERT INTO POST(USERID, TITLE, MESSAGE, DATE)"
@@ -69,12 +69,12 @@ public class PostDAO {
 			psCreateUser.setString(2, post.getTitle());
 			psCreateUser.setString(3, post.getMessage());
 			psCreateUser.executeUpdate();
-			
-			return true;
 		} catch (SQLException e) {
-           
-			return false;
-			
+            e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("ERROR!");
+            alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
+            alert.showAndWait();
 		} finally {
 			try {
 				if(rs != null) rs.close();
