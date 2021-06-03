@@ -39,8 +39,9 @@ public class StartMenuOverviewController {
     }
 	
 	/*
-	 * Method that redirects the user to the login page
+	 * Botó per a iniciar sessió
 	 */
+	@FXML
     private void handleChangeLogin(ActionEvent event) throws IOException{
 		window = mainApp.getStage();
         mainApp.showSignUpOverview(event, window);
@@ -48,9 +49,6 @@ public class StartMenuOverviewController {
     }
 	
 	@FXML
-	/*
-	 * Method that redirects the user to the register page
-	 */
     private void handleChangeSignUp(ActionEvent event) throws IOException{
 		window = mainApp.getStage();
         mainApp.showSignInOverview(event, window);

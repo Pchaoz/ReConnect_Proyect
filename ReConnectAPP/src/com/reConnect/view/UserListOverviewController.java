@@ -28,8 +28,6 @@ public class UserListOverviewController {
     @FXML
     public void initialize() throws IOException {
     	
-    	/* LOADS THE SCROLL MENU */
-    	
     	VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
     	drawer.setSidePane(box);
     	
@@ -40,19 +38,10 @@ public class UserListOverviewController {
     		burger.play();
     		
     		if (drawer.isOpened()) {
-    			/* CLOSE THE SCROLL MENU */
-    			
     	        drawer.close();
     	    } else {
-    	    	/* OPENS THE SCROLL MENU */
-    	    	
     	        drawer.open();
     	    }
     	});
-    	
     }
-    
-    
-    
-    
 }

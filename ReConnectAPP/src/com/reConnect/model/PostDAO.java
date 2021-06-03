@@ -29,6 +29,7 @@ public class PostDAO {
 			connection = getConnection();
 			ps = connection.prepareStatement("SELECT * FROM POST");
 			rs = ps.executeQuery();
+			System.out.println("Connected sucessfully");
 			while(rs.next()) {
 				postVOAux = new PostVO();
 				postVOAux.setPid(rs.getInt(1));
@@ -68,9 +69,12 @@ public class PostDAO {
 			psCreateUser.setString(2, post.getTitle());
 			psCreateUser.setString(3, post.getMessage());
 			psCreateUser.executeUpdate();
+			
 			return true;
 		} catch (SQLException e) {
-           return false;
+           
+			return false;
+			
 		} finally {
 			try {
 				if(rs != null) rs.close();

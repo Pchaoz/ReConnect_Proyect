@@ -32,27 +32,18 @@ public class DrawerContentController {
 	Stage window;
 	
     @FXML
-    /*
-     * Redirects the user into the login/register page
-     */
     void handleLogOut(ActionEvent event) throws IOException {
     	window = mainApp.getStage();
     	mainApp.showStartPageOverview(event, window);
     }
 
     @FXML
-    /*
-     * Redirects the user to the main page
-     */
     void handleMainPage(ActionEvent event) throws IOException {
     	window = mainApp.getStage();
     	mainApp.showMainPageOverview(event, window);
     }
 
     @FXML
-    /*
-     * Redirects the user to the message page
-     */
     void handleMessages(ActionEvent event) throws IOException {
 
     	Parent root = FXMLLoader.load(getClass().getResource("UserListOverview.fxml"));
@@ -63,9 +54,6 @@ public class DrawerContentController {
     }
 
     @FXML
-    /*
-     * Redirects the user into the profile edit page
-     */
     void handleProfile(ActionEvent event) throws IOException {
     	window = mainApp.getStage();
     	mainApp.showProfileEditOverview(window);

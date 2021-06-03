@@ -37,15 +37,11 @@ public class SignUpOverviewController {
 
 	public static int uid;
 	
-	public static String usr;
-	
 	@FXML
 	public void initialize() {
 		
 	}
 
-
-	@FXML
 	/**
 	 * Check if username exists or not
 	 * Hash password
@@ -53,6 +49,7 @@ public class SignUpOverviewController {
 	 * Check if passwords are the same
 	 * @throws NoSuchAlgorithmException 
 	 */
+	@FXML
 	private void handleNewUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
 		//window = mainApp.getStage();
 
@@ -67,14 +64,27 @@ public class SignUpOverviewController {
 		String hashedPassword = hashPassword.hashPassword(password);
 		if(isInputCorrect(password, confirmP)) {
 			UserVO newUser = new UserVO(username, email, hashedPassword, name, surname);
+			
 			if (createUser.createUser(newUser)) {
 				
 				createUser.loadUser(newUser);
+				
+				uid = newUser.getUid();
+				
+				//Controller used to change screen
+				mainApp.showMainPageOverview(event, window);
+				
+			}else {
+				
+				Alert alert = new Alert(AlertType.WARNING);
+	            alert.setTitle("ERROR!");
+	            alert.setHeaderText("Hi ha hagut un problema amb la creació de l'usuari");
+	            alert.setContentText("Prova un altre nom d'usuari o correu electrònic");
+	            alert.showAndWait();
+	            			
+			}
 			
-			uid = newUser.getUid();
 			
-			//Controller used to change screen
-			mainApp.showMainPageOverview(event, window);
 		}
 	}
 
@@ -91,9 +101,6 @@ public class SignUpOverviewController {
 	}
 	
 	@FXML
-	/*
-	 * Method to returns the user into the login/register page
-	 */
 	public void handleReturn(ActionEvent event) throws IOException  {
 		window = mainApp.getStage();
 		mainApp.showStartPageOverview(event, window);

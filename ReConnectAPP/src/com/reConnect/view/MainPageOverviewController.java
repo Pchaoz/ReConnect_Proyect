@@ -58,14 +58,10 @@ public class MainPageOverviewController {
 	   		burger.play();
 
 	   		if (drawer.isOpened()) {
-    			/* CLOSE THE SCROLL MENU */
-    			
-    	        drawer.close();
-    	    } else {
-    	    	/* OPENS THE SCROLL MENU */
-    	    	
-    	        drawer.open();
-    	    }
+	   	        drawer.close();
+	   	    } else {
+	   	        drawer.open();
+	   	    }
 	   	});
 		
 		/*URI url = new URI("http://userserve-ak.last.fm/serve/126/8636005.jpg");
@@ -96,20 +92,15 @@ public class MainPageOverviewController {
     	} else {
     		PostVO newPost = new PostVO(SignInOverviewController.getUID(), titleTextField.getText(), bodyTextField.getText());
     		PostDAO createPost = new PostDAO();
+    		
     		if (createPost.createPost(newPost)) {
-    			
-    			
+
     		}else {
-    			
-    			Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("ERROR!");
-                alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
-                alert.showAndWait();
+				Alert alert = new Alert(AlertType.WARNING);
+	            alert.setTitle("ERROR!");
+	            alert.setHeaderText("Hi ha hagut un problema amb la creació del post");
+	            alert.showAndWait();
     		}
-    		
-    		
- 			
     	}
-    	
     }
 }
