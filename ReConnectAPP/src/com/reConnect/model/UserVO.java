@@ -14,14 +14,12 @@ public class UserVO {
 	}
 	
 	public UserVO(String username, String password) {
-		
 		this.username = username;
 		this.password = password;
 	}
 	
 	
 	public UserVO(String username, String email, String password, String name, String surname) {
-
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -31,7 +29,6 @@ public class UserVO {
 	}
 	
 	public UserVO(String username, String email, String password, String name, String surname, String imgUrl) {
-
 		this.username = username;
 		this.email = email;
 		this.password = password;

@@ -29,7 +29,6 @@ public class UserDAO {
 			connection = getConnection();
 			ps = connection.prepareStatement("SELECT * FROM USER");
 			rs = ps.executeQuery();
-			System.out.println("Connected sucessfully");
 			while(rs.next()) {
 				userVOAux = new UserVO();
 				userVOAux.setUid(rs.getInt(1));
@@ -70,7 +69,6 @@ public class UserDAO {
 	}
 	
 	public boolean validateUser(UserVO user) {
-		
 		boolean check = false;
 		
 		try {
@@ -94,9 +92,7 @@ public class UserDAO {
 	 * UPDATES THE USER ON THE DATABASE
 	 */
 	public boolean userUpdater(UserVO user) {
-	
-		try {
-			
+		try {	
 			connection = getConnection();
 			
 			PreparedStatement psUpdateUser = connection.prepareStatement("UPDATE USER SET USERNAME = ?, EMAIL = ?, PASSWORD = ?, NAME = ?, SURNAME = ?, IMGURL = ? WHERE UID = ?");
@@ -113,13 +109,12 @@ public class UserDAO {
 			return true;
 		
 		}catch (SQLException e) {
-			
 			System.out.println(e.getMessage());
 			return false;
-
 		}
 		
 	}
+	
 	/*
 	 * LOADS ALL THE USER INFORMATION INTO THE UserVO
 	 */

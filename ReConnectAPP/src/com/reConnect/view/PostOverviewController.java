@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class PostOverviewController {
@@ -17,7 +19,12 @@ public class PostOverviewController {
     private TableColumn<PostVO, String> titleColumn;
     @FXML
     private TableColumn<PostVO, String> bodyColumn;
-    private Stage window;
+    @FXML
+    private ImageView profileImageView;
+    @SuppressWarnings("unused")
+	private Stage window;
+    
+    @SuppressWarnings("unused")
 	private MainApp mainApp;
     /*
     public PostOverviewController() {
@@ -30,11 +37,14 @@ public class PostOverviewController {
 	
     @FXML
 	public void initialize() throws IOException {
-
-    	// Initialize the person table with the two columns.    	
-    	titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
-    	bodyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMessage())); 
-
+    	try {
+        	// Initialize the person table with the two columns.    	
+        	titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
+        	bodyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMessage()));
+    	} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
+ 
 	}
     /*
     /**

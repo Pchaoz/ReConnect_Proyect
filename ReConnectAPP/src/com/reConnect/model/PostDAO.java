@@ -38,7 +38,6 @@ public class PostDAO {
 				postVOAux.setMessage(rs.getString(4));
 				postVOAux.setDate(rs.getDate(5));
 				
-				System.out.println(postVOAux.getMessage());
 				postVO.add(postVOAux);
 			}
 			return postVO;

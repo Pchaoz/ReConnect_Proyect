@@ -37,7 +37,9 @@ public class SignInOverviewController {
 	
 	public static int uid;
 	public static String username2;
+	public static String url;
 	private MainApp mainApp;
+	
 	Stage window;
 
 	/** METHODS **/
@@ -67,6 +69,7 @@ public class SignInOverviewController {
 			
 			uid = userLoged.getUid();
 			username2 = userLoged.getUsername();
+			url = userLoged.getImgUrl();
 			 // Give the controller access to the main app.
 			mainApp.showMainPageOverview(event, window);
 		} else {
@@ -88,7 +91,10 @@ public class SignInOverviewController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-
+	
+	public static String getURL() {
+		return url;
+	}
 	
 	public static int getUID() {
 		return uid;

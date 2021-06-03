@@ -160,7 +160,7 @@ public class MainApp extends Application {
 		controller1.setMainApp(this);
 	}
 
-	public void showPersonOverview(Stage window) throws IOException {
+	public void showPostOverview(Stage window) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(MainApp.class.getResource("view/PostOverview.fxml"));
 		AnchorPane appOverview = (AnchorPane) loader.load();
