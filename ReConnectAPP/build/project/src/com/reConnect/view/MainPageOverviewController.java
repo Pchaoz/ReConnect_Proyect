@@ -24,6 +24,8 @@ public class MainPageOverviewController {
 	@FXML
 	Label usernameLabel;
 	@FXML
+	Label surnameLabel;
+	@FXML
 	ImageView profileImageView;
 	@FXML
     private JFXHamburger hamburger;
@@ -40,10 +42,8 @@ public class MainPageOverviewController {
 		   	HamburgerBackArrowBasicTransition burger = new HamburgerBackArrowBasicTransition(hamburger);
 		   	burger.setRate(-1);
 		   	hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-		   		
 		   		burger.setRate(burger.getRate() * -1);
 		   		burger.play();
-
 		   		if (drawer.isOpened()) {
 		   	        drawer.close();
 		   	    } else {
@@ -51,13 +51,10 @@ public class MainPageOverviewController {
 		   	    }
 		   	});
 			
-		   	Image image = new Image(SignInOverviewController.getURL());
-			profileImageView.setImage(image);
-		    usernameLabel.setText(SignInOverviewController.getUsername());
+		   	
 		} catch (IllegalArgumentException e) {
 			// TODO: handle exception
 		}
-		
 	}
 
     @FXML
@@ -69,6 +66,10 @@ public class MainPageOverviewController {
     public void setMainApp(MainApp mainApp) throws IOException {
         this.mainApp = mainApp;
 		mainApp.showLateralMenu(drawer);
+		Image image = new Image(mainApp.getURL());
+	    usernameLabel.setText(mainApp.getName());
+	    surnameLabel.setText(mainApp.getSurname());
+		profileImageView.setImage(image);
     }
     
     @FXML

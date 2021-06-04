@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ReConnectAPP.jnlp">
+  <information>
+    <title>ReConnectAPP</title>
+    <vendor>com.reConnect</vendor>
+    <description>reConnect</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ReConnectAPP.jar" size="29156" download="eager" />
+    <jar href="libs/jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="libs/mariadb-java-client-2.7.2.jar" size="632979" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="com.reConnect.MainApp"  name="reConnect" />
+  <update check="background"/>
+</jnlp>

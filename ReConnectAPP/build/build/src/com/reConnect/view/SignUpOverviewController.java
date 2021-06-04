@@ -66,7 +66,7 @@ public class SignUpOverviewController {
 			
 			createUser.loadUser(newUser);
 			
-			uid = newUser.getUid();
+			mainApp.reloadUser(newUser);
 			
 			//Controller used to change screen
 			mainApp.showMainPageOverview(event, window);
@@ -97,6 +97,7 @@ public class SignUpOverviewController {
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        window = mainApp.getStage();
         // Add observable list data to the table
     }
 }

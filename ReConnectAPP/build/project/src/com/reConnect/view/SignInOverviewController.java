@@ -41,13 +41,13 @@ public class SignInOverviewController {
 	private MainApp mainApp;
 	
 	Stage window;
-
-	/** METHODS **/
 	
-	@FXML
-	public void initialize() {
-	}
-
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 */
 	@FXML
 	public void handleLogin(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		window = mainApp.getStage();
@@ -66,11 +66,9 @@ public class SignInOverviewController {
 		if (validateUser.validateUser(userLoged)) {
 		
 			validateUser.loadUser(userLoged);
+			mainApp.reloadUser(userLoged);
 			
-			uid = userLoged.getUid();
-			username2 = userLoged.getUsername();
-			url = userLoged.getImgUrl();
-			 // Give the controller access to the main app.
+			// Give the controller access to the main app.
 			mainApp.showMainPageOverview(event, window);
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -81,25 +79,37 @@ public class SignInOverviewController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void handleReturn(ActionEvent event) throws IOException  {
 		window = mainApp.getStage();
 		mainApp.showStartPageOverview(event, window);
 	}
 	
-	
+	/**
+	 * 
+	 * @param mainApp
+	 */
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 	
-	public static String getURL() {
-		return url;
-	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public static int getUID() {
 		return uid;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static String getUsername() {
 		return username2;
 	}

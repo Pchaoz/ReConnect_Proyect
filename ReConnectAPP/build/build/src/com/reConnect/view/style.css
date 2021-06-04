@@ -1,0 +1,49 @@
+.content{
+    -fx-background-color: rgb(130,199,185,255);
+}
+.root{
+    -fx-background-color: linear-gradient(#134E5E,#71B280);
+}
+.button{
+    -fx-background-radius: 5;
+    -fx-font-size: 16;
+    -fx-background-color: rgb(232,155,39,255);
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.button:hover{
+    -fx-background-radius: 5;
+    -fx-font-size: 16;
+    -fx-background-color: rgb(76,145,203,255);
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.jfx-button{
+    -fx-background-radius: 5;
+    -fx-font-size: 16;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.jfx-button:hover{
+    -fx-background-radius: 5;
+    -fx-font-size: 16;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-border-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.signin{
+    -fx-background-color: linear-gradient(#DA4453,#89216B);
+}
+
+.editprofile{
+    -fx-background-color: linear-gradient(#003973,#E5E5BE);
+}

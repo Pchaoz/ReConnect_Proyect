@@ -35,6 +35,10 @@ public class MainPageOverviewController {
     private Stage window; 
 	SignInOverviewController userController;
 	
+	/**
+	 * Aquest metode serveix per definir els camps i objectes abans de que carregui el fxml
+	 * @throws IOException
+	 */
 	@FXML
 	public void initialize() throws IOException {
 		try {
@@ -51,27 +55,39 @@ public class MainPageOverviewController {
 		   	    }
 		   	});
 			
-		   	
 		} catch (IllegalArgumentException e) {
 			// TODO: handle exception
 		}
 	}
 
+	/**
+	 * Aquest metode es lencarregat denviar lusuari a la pantalla de les publicacions
+	 * @throws IOException
+	 */
     @FXML
     public void handlePosts() throws IOException{
     	window = mainApp.getStage();
     	mainApp.showPostOverview(window);
     }
     
+    /**
+     * Aquest metode sencarrega de obtenir acces a la MainApp.java aixi com carregar les dades de lusuari una 
+     * vegada ha carregat la base de dades
+     * @param mainApp
+     * @throws IOException
+     */
     public void setMainApp(MainApp mainApp) throws IOException {
-        this.mainApp = mainApp;
-		mainApp.showLateralMenu(drawer);
-		Image image = new Image(mainApp.getURL());
-	    usernameLabel.setText(mainApp.getName());
-	    surnameLabel.setText(mainApp.getSurname());
-		profileImageView.setImage(image);
+    		this.mainApp = mainApp;
+    		mainApp.showLateralMenu(drawer);
+    		Image image = new Image(mainApp.getURL());
+    	    usernameLabel.setText(mainApp.getName());
+    	    surnameLabel.setText(mainApp.getSurname());
+    		profileImageView.setImage(image);
     }
     
+    /**
+     * Aquest metode sencarrega devitar que es publiquin articles sense cos o titol
+     */
     @FXML
     public void handleSubmitPost() {
     	if(titleTextField.getText().isEmpty() || bodyTextField.getText().isEmpty()) {
@@ -81,7 +97,7 @@ public class MainPageOverviewController {
 		    alert.setContentText("Ni el titol ni el cos del missatge pot estar buit!");
 		    alert.showAndWait();
     	} else {
-    		PostVO newPost = new PostVO(SignInOverviewController.getUID(), titleTextField.getText(), bodyTextField.getText());
+    		PostVO newPost = new PostVO(mainApp.getCurrUser().getUid(), titleTextField.getText(), bodyTextField.getText());
     		PostDAO createPost = new PostDAO();
     		createPost.createPost(newPost);
     	}

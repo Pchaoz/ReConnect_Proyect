@@ -25,15 +25,12 @@ public class PostOverviewController {
     private ImageView profileImageView;
 	private Stage window;
 	private MainApp mainApp;
-    /*
-    public PostOverviewController() {
-    }
+  
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      * @throws IOException 
      */
-	
     @FXML
 	public void initialize() throws IOException {
     	try {

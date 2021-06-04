@@ -5,10 +5,10 @@ import java.io.IOException;
 import com.reConnect.MainApp;
 import com.reConnect.model.PostVO;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -17,14 +17,13 @@ public class PostOverviewController {
     private TableView<PostVO> personTable;
     @FXML
     private TableColumn<PostVO, String> titleColumn;
-    @FXML
+    /**
+	 * Dona acces al mainApp i canvia la pestanya per una de nova
+	 */ @FXML
     private TableColumn<PostVO, String> bodyColumn;
     @FXML
     private ImageView profileImageView;
-    @SuppressWarnings("unused")
 	private Stage window;
-    
-    @SuppressWarnings("unused")
 	private MainApp mainApp;
     /*
     public PostOverviewController() {
@@ -44,9 +43,20 @@ public class PostOverviewController {
     	} catch (NullPointerException e) {
 			// TODO: handle exception
 		}
- 
+
 	}
-    /*
+    /**
+     * Es lencarregat de enviar lusuari a la pagina anterior (mainPage)
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    public void handleReturn(ActionEvent event) throws IOException {
+    	window = mainApp.getStage();
+		mainApp.showMainPageOverview(event, window);
+    }
+    
+    
     /**
      * Is called by the main application to give a reference back to itself.
      * 
@@ -56,8 +66,9 @@ public class PostOverviewController {
     public void setMainApp(MainApp mainApp) throws IOException {
         this.mainApp = mainApp;
         // Add observable list data to the table
-        // 
         personTable.setItems(mainApp.getPersonData());
-        System.out.println(mainApp == null);
+        mainApp.reloadDB(personTable);
     }
+    
+
  }

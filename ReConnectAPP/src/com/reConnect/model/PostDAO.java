@@ -13,7 +13,6 @@ public class PostDAO {
 	private Connection connection = null;
 	private PreparedStatement ps = null; 
 	private ResultSet rs = null; 
-	//private UserDAO updater;
 	private Connection getConnection() throws SQLException{
 		Connection conn;
 		ConnectionDB connDB = new ConnectionDB();
