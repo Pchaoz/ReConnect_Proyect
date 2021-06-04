@@ -19,19 +19,13 @@ public class StartMenuOverviewController {
 
 	@FXML
 	private Label welcomeText;
-	
 	@FXML
 	private Button signInButton;
-	
 	@FXML
 	private Button signUpButton;
-	
 	private MainApp mainApp;
 	private Stage window;
-	
-	@FXML
-	private void initialize() {		
-	}
+
 	
 	
 	public void setMainApp(MainApp mainApp) {
@@ -39,7 +33,7 @@ public class StartMenuOverviewController {
     }
 	
 	/*
-	 * Botó per a iniciar sessió
+	 * Encarregat denviar lusuari a la pagina de inici de sessio
 	 */
 	@FXML
     private void handleChangeLogin(ActionEvent event) throws IOException{
@@ -47,7 +41,11 @@ public class StartMenuOverviewController {
         mainApp.showSignUpOverview(event, window);
          // Give the controller access to the main app.
     }
-	
+	/**
+	 * Encarregat denviar lusuari a la pagina de registre
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
     private void handleChangeSignUp(ActionEvent event) throws IOException{
 		window = mainApp.getStage();

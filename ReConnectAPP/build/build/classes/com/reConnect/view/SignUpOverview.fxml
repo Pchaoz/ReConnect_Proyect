@@ -31,27 +31,27 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Nom d'usuari:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Username:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Correu:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Email:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Contrasenya:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Password:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Confirma la contrassenya:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Confirm password:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Nom:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Name:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Cognom:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Surrname:" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Loma" size="17.0" />
                </font></Label>

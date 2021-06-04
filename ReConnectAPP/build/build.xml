@@ -20,19 +20,24 @@
 		<mkdir dir="externalLibs" />
 	
 		<copy todir="externalLibs">
-			<fileset dir="/home/asanme/Downloads">
+			<fileset dir="/home/pchaoz/Escritorio/Librerias Java">
 				<filename name="mariadb-java-client-2.7.2.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="/home/asanme/Downloads">
+			<fileset dir="/home/pchaoz/Escritorio/Librerias Java">
+				<filename name="stdlib-package.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/pchaoz/Escritorio/Librerias Java">
 				<filename name="jfoenix-8.0.10.jar"/>
 			</fileset>
 		</copy>
 	
 		<mkdir dir="project" />
 		<copy todir="project">
-			<fileset dir="/home/asanme/Documents/GitHub/ReConnect_Proyect/ReConnectAPP">
+			<fileset dir="/home/pchaoz/git/ReConnect_Proyect/ReConnectAPP">
 				<include name="src/**" />
 			</fileset>
 		</copy>
@@ -49,6 +54,7 @@
 		<copy todir="build/libs">
 			<fileset dir="externalLibs">
 				<include name="jfoenix-8.0.10.jar"/>
+				<include name="stdlib-package.jar"/>
 				<include name="mariadb-java-client-2.7.2.jar"/>
 			</fileset>
 		</copy>
@@ -116,7 +122,7 @@
 			<manifest>
 				<attribute name="Implementation-Vendor" value="com.reConnect"/>
 				<attribute name="Implementation-Title" value="reConnect"/>
-				<attribute name="Implementation-Version" value="0.1"/>
+				<attribute name="Implementation-Version" value="1"/>
 				<attribute name="JavaFX-Feature-Proxy" value="None"/>
 			</manifest>
 		</fx:jar>

@@ -43,7 +43,8 @@ public class SignInOverviewController {
 	Stage window;
 	
 	/**
-	 * 
+	 * Aquest metode es lencarregat de validar lusuari per tal que pugui inicar 
+	 * sessio
 	 * @param event
 	 * @throws IOException
 	 * @throws NoSuchAlgorithmException
@@ -80,7 +81,7 @@ public class SignInOverviewController {
 	}
 	
 	/**
-	 * 
+	 * Aquest metode es lencarregat denviar lusuari a la pantalla anterior
 	 * @param event
 	 * @throws IOException
 	 */
@@ -91,26 +92,10 @@ public class SignInOverviewController {
 	}
 	
 	/**
-	 * 
+	 * Aquest metode serveix per obtenir acces a la MainApp.java
 	 * @param mainApp
 	 */
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public static int getUID() {
-		return uid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public static String getUsername() {
-		return username2;
-	}
 }

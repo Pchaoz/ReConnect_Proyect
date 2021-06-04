@@ -12,8 +12,11 @@ public class UserDAO {
 	private Connection connection = null;
 	private PreparedStatement ps = null; 
 	private ResultSet rs = null; 
-	//private UserDAO updater;
-	
+	/**
+	 * Encarregat destablir la connexio amb base de dades
+	 * @return
+	 * @throws SQLException
+	 */
 	private Connection getConnection() throws SQLException{
 		Connection conn;
 		ConnectionDB connDB = new ConnectionDB();
@@ -21,6 +24,10 @@ public class UserDAO {
 		return conn;
 	}
 	
+	/**
+	 * Metode encarregat de carregat tota la llista existent dusuaris de la base de dades
+	 * @return
+	 */
 	public ArrayList<UserVO> obtainAllUsers(){
 		UserVO userVOAux;
 		ArrayList<UserVO> userVO = null;
@@ -45,6 +52,7 @@ public class UserDAO {
 		}
 		return userVO;
 	}
+	
 	/*
 	 * VALIDATES THE USER IN THE DATABASE FOR LOGIN
 	 */
@@ -68,6 +76,11 @@ public class UserDAO {
 		}
 	}
 	
+	/**
+	 * Valida usuari 
+	 * @param user
+	 * @return
+	 */
 	public boolean validateUser(UserVO user) {
 		boolean check = false;
 		

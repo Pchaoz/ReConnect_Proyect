@@ -80,6 +80,7 @@ public class MainApp extends Application {
     
     public UserVO setCurrUser(UserVO currentUser) {
     	currUser = currentUser;
+    	System.out.println(currUser.getName());
     	return currUser;
     }
     
