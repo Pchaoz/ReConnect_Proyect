@@ -31,12 +31,12 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="TOP_RIGHT" prefHeight="21.0" prefWidth="164.0" text="Contrasenya:" GridPane.rowIndex="1">
+            <Label alignment="TOP_RIGHT" prefHeight="21.0" prefWidth="164.0" text="Password:" GridPane.rowIndex="1">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>
                <GridPane.margin>
-                  <Insets />
+                  <Insets right="20.0" />
                </GridPane.margin>
             </Label>
             <TextField fx:id="usernameField" prefHeight="38.0" prefWidth="228.0" GridPane.columnIndex="1">

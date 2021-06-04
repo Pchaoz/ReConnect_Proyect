@@ -100,6 +100,14 @@ public class MainPageOverviewController {
     		PostVO newPost = new PostVO(mainApp.getCurrUser().getUid(), titleTextField.getText(), bodyTextField.getText());
     		PostDAO createPost = new PostDAO();
     		createPost.createPost(newPost);
+		
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		    alert.setHeaderText(null);
+		    alert.setTitle("Creacio correcte");
+		    alert.setContentText("La noticia s'ha pujat correctament");
+		    alert.showAndWait();
+	
+    		
     	}
     }
 }
